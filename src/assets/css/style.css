@@ -1,0 +1,13 @@
+.link-hover {
+  color: black;
+  transition: all 0.6s;
+}
+
+div.link-hover:hover {
+  background-color: cadetblue;
+  color: white !important;
+}
+
+.link-hover:hover a {
+  color: white !important;
+}
