@@ -21,6 +21,8 @@ export default function Sidebar() {
 
   return (
     <aside className="ps-4 pt-4">
+      {console.log("Sidebar")}
+
       <div className="d-flex align-items-center gap-3">
         <Image src={Logo} />
         <p className="fw-semibold m-0">Admin Panel</p>

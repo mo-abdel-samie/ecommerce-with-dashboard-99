@@ -1,5 +1,8 @@
-import AdminLayout from "../../../layouts/admin/AdminLayout";
-
 export default function Dashboard() {
-  return <AdminLayout>Dashboard</AdminLayout>;
+  return (
+    <>
+      {console.log("Dashboard")}
+      Dashboard
+    </>
+  );
 }

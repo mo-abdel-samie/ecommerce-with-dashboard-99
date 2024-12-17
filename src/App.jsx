@@ -4,6 +4,8 @@ import Dashboard from "./pages/admin/Dashboard/Dashboard";
 import "./assets/css/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Products from "./pages/admin/Products/Products";
+import AdminLayout from "./layouts/admin/AdminLayout";
+import { ProductProvider } from "./contexts/ProductContext";
 
 function App() {
   const routes = useRoutes([
@@ -17,6 +19,7 @@ function App() {
     },
     {
       path: "/admin",
+      element: <AdminLayout />,
       children: [
         {
           path: "dashboard",
@@ -30,7 +33,12 @@ function App() {
     },
   ]);
 
-  return routes;
+  return (
+    <>
+      {console.log("*******(App)*********")}
+      <ProductProvider>{routes}</ProductProvider>
+    </>
+  );
 }
 
 export default App;
