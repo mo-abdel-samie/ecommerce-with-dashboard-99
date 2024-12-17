@@ -12,7 +12,6 @@ export default function Products() {
   useEffect(() => {
     getAllProducts(({ data }) => {
       console.log(data.products);
-
       setProducts(data.products);
     });
   }, []);
@@ -24,24 +23,24 @@ export default function Products() {
 
       {!products.length > 0 && <p>Loading....</p>}
 
-      <Table striped bordered hover variant="light">
-        <thead>
-          <tr className="text-nowrap">
-            <th>#id</th>
-            <th className="text-nowrap">Title</th>
-            <th>category</th>
-            <th>availabilityStatus</th>
-            <th>brand</th>
-            <th>stock</th>
-            <th>rating</th>
-            <th>price</th>
-            <th>thumbnail</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.length > 0 &&
-            products.map(
+      {products.length > 0 && (
+        <Table striped bordered hover variant="light">
+          <thead>
+            <tr>
+              <th>#id</th>
+              <th>Title</th>
+              <th>category</th>
+              <th>availabilityStatus</th>
+              <th>brand</th>
+              <th>stock</th>
+              <th>rating</th>
+              <th>price</th>
+              <th>thumbnail</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map(
               (
                 {
                   id,
@@ -58,7 +57,7 @@ export default function Products() {
               ) => (
                 <tr key={i}>
                   <th>{id}</th>
-                  <th>{title}</th>
+                  <th className="text-nowrap">{title}</th>
                   <th>{category}</th>
                   <th>{availabilityStatus}</th>
                   <th>{brand}</th>
@@ -84,8 +83,9 @@ export default function Products() {
                 </tr>
               )
             )}
-        </tbody>
-      </Table>
+          </tbody>
+        </Table>
+      )}
     </>
   );
 }

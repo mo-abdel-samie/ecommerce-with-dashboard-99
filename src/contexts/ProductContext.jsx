@@ -10,7 +10,6 @@ const ProductContext = createContext({
 export const useProductContext = () => useContext(ProductContext);
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
 
   const getAllProducts = (cb) => {
     MainApi.get("/products")
