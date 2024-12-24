@@ -3,6 +3,9 @@ import { useProductContext } from "../../../contexts/ProductContext";
 import { Button, Image, Table } from "react-bootstrap";
 import { BiEdit, BiTrash } from "react-icons/bi";
 import { BsEye } from "react-icons/bs";
+import ShowProduct from "./components/ShowProduct";
+import EditProduct from "./components/EditProduct";
+import DeleteProduct from "./components/DeleteProduct";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -14,10 +17,10 @@ export default function Products() {
       console.log(data.products);
       setProducts(data.products);
     });
-  }, []);
+  }, [getAllProducts]);
 
   return (
-    <>
+    <div>
       {console.log("Products")}
       <h1>Products</h1>
 
@@ -40,52 +43,47 @@ export default function Products() {
             </tr>
           </thead>
           <tbody>
-            {products.map(
-              (
-                {
-                  id,
-                  title,
-                  category,
-                  availabilityStatus,
-                  brand,
-                  stock,
-                  rating,
-                  price,
-                  thumbnail,
-                },
-                i
-              ) => (
+            {products.map((product, i) => {
+              const {
+                id,
+                title,
+                category,
+                availabilityStatus,
+                brand,
+                stock,
+                rating,
+                price,
+                thumbnail,
+              } = product;
+
+              return (
                 <tr key={i}>
-                  <th>{id}</th>
-                  <th className="text-nowrap">{title}</th>
-                  <th>{category}</th>
-                  <th>{availabilityStatus}</th>
-                  <th>{brand}</th>
-                  <th className={stock < 10 ? "text-danger" : ""}>{stock}</th>
-                  <th>{rating}</th>
-                  <th>{price}</th>
-                  <th>
+                  <td>
+                    <p>{id}</p>
+                  </td>
+                  <td className="text-nowrap">{title}</td>
+                  <td>{category}</td>
+                  <td>{availabilityStatus}</td>
+                  <td>{brand}</td>
+                  <td className={stock < 10 ? "text-danger" : ""}>{stock}</td>
+                  <td>{rating}</td>
+                  <td>{price}</td>
+                  <td>
                     <Image className="img-fluid" width={75} src={thumbnail} />
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <div className="d-flex align-items-center my-auto">
-                      <Button variant="primary">
-                        <BsEye />
-                      </Button>
-                      <Button variant="success">
-                        <BiEdit />
-                      </Button>
-                      <Button variant="danger">
-                        <BiTrash />
-                      </Button>
+                      <ShowProduct product={product} />
+                      <EditProduct product={product} />
+                      <DeleteProduct product={product} />
                     </div>
-                  </th>
+                  </td>
                 </tr>
-              )
-            )}
+              );
+            })}
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   );
 }

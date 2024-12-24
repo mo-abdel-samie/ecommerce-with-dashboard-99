@@ -21,9 +21,9 @@ function AdminLayout() {
         <Sidebar />
       </div>
 
-      <div className="col">
+      <div className="col overflow-auto">
         <MainNavbar setIsOpened={setIsOpened} />
-        <main className="min-vh-100 px-4 py-3">
+        <main className="min-vh-100 px-4 py-3 ">
           <Outlet />
           {/* {children} */}
         </main>
